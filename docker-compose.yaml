@@ -1,0 +1,16 @@
+services:
+  dragonfly:
+    image: docker.dragonflydb.io/dragonflydb/dragonfly:latest
+    container_name: castordragon
+    ports:
+        - "127.0.0.1:6379:6379"
+    volumes:
+      - dragonfly_data:/data
+    command: --requirepass a-very-complex-password
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+volumes:
+    dragonfly_data:
