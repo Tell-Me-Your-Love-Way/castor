@@ -24,7 +24,7 @@ func main() {
 	router := gin.Default()
 	router.POST("/amazon", amazon.HandlerQuery)
 	router.POST("/magalu", magalu.Handler)
-	err := router.Run("127.0.0.1:8080")
+	err = router.Run("127.0.0.1:8080")
 	if err != nil {
 		panic("Error starting server: " + err.Error())
 	}

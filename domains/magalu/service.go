@@ -99,7 +99,7 @@ func (s *service) RenderSite(sku, partnerTag string) (string, string, error) {
 	}
 	defer func() {
 		if err := resp.Body.Close(); err != nil {
-			fmt.Printf(err) // Log ou trate o erro de fechamento do corpo, se necessário
+			fmt.Printf("failed to close response body: %v\n", err)
 		}
 	}()
 	url := resp.Request.URL.String()
