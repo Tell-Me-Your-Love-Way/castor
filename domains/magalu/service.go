@@ -65,7 +65,7 @@ func (s *service) RenderSite(sku, partnerTag string) (string, string, error) {
 	req.Header.Set("Sec-Fetch-User", "?1")
 
 	// Add cookies to simulate a user session
-	cookies := []string{
+	/*cookies := []string{
 		"MLPARCEIRO=" + partnerTag,
 		"noe_freight=AUTO",
 		"noe_hub_shipping_enabled=1",
@@ -90,7 +90,7 @@ func (s *service) RenderSite(sku, partnerTag string) (string, string, error) {
 		fmt.Sprintf("__uzmc=%d", randomNumber(100000000000, 999999999999)),
 		fmt.Sprintf("__uzmd=%d", time.Now().Unix()),
 	}
-	req.Header.Set("Cookie", strings.Join(cookies, "; "))
+	req.Header.Set("Cookie", strings.Join(cookies, "; "))*/
 
 	// Execute request
 	resp, err := s.HttpClient().Do(req)
@@ -143,17 +143,17 @@ func (s *service) RenderSite(sku, partnerTag string) (string, string, error) {
 }
 
 // Helper functions to mimic human-like behavior
-func generateRandomUUID() string {
+/*func generateRandomUUID() string {
 	// Simplified UUID generator for demonstration
 	b := make([]byte, 16)
 	for i := range b {
 		b[i] = byte(randomNumber(0, 255))
 	}
 	return fmt.Sprintf("%x-%x-%x-%x-%x", b[0:4], b[4:6], b[6:8], b[8:10], b[10:])
-}
+}*/
 
-func randomNumber(min, max int) int {
+/*func randomNumber(min, max int) int {
 	return min + int(time.Now().UnixNano()%int64(max-min+1))
-}
+}*/
 
 var ServiceInstance Service

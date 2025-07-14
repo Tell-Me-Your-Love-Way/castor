@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/Tell-Me-Your-Love-Way/castor/domains/amazon"
 	"github.com/Tell-Me-Your-Love-Way/castor/domains/magalu"
+	"github.com/Tell-Me-Your-Love-Way/castor/domains/scrapping"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/redis/go-redis/v9"
@@ -21,9 +22,11 @@ func main() {
 	})
 	amazon.ServiceInstance = amazon.NewService(rdb)
 	magalu.ServiceInstance = magalu.NewService(rdb)
+	scrapping.ServiceInstance = scrapping.NewService()
 	router := gin.Default()
 	router.POST("/amazon", amazon.HandlerQuery)
 	router.POST("/magalu", magalu.Handler)
+	router.POST("/parse", scrapping.Handler)
 	err = router.Run("127.0.0.1:8080")
 	if err != nil {
 		panic("Error starting server: " + err.Error())
