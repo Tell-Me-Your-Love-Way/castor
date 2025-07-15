@@ -16,9 +16,16 @@ func Handler(c *gin.Context) {
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
 	}
+	price, finalUrl, err := ServiceInstance.RenderSite(link, domain, request.PartnerTag)
+	if err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
 	c.JSON(200, gin.H{
 		"link":   link,
 		"domain": domain,
-		"id":     id,
+		"item":   id,
+		"url":    finalUrl,
+		"price":  price,
 	})
 }
